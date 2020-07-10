@@ -7,8 +7,8 @@ const port = 3000
 app.get('/', (req, res) => res.send("HELLO WORLD!"));
 
 app.post('/logs', (req, res) => {
-    console.log(JSON.stringify(req.body))
-    res.send(200);
+    console.log(JSON.stringify(req))
+    res.sendStatus(200);
 })
 
 app.listen((process.env.PORT || port), () => {
