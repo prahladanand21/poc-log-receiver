@@ -3,7 +3,7 @@
   "lockfileVersion": 1,
   "engines": {
     "node": "12"
-  }
+  },
   "scripts": {
     "start": "node index.js"
   },
