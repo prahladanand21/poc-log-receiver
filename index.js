@@ -6,7 +6,7 @@ const port = 3000
 
 app.get('/', (req, res) => res.send("HELLO WORLD!"));
 
-app.get('/logs', (req, res) => {
+app.post('/logs', (req, res) => {
     console.log(req.body)
 })
 
