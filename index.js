@@ -8,7 +8,8 @@ app.use(express.json())
 app.get('/', (req, res) => res.send("HELLO WORLD!"));
 
 app.post('/logs', (req, res) => {
-    console.log((req.body))
+    console.log(req.body)
+    console.log(req.headers)
     return res.sendStatus(200);
 })
 
