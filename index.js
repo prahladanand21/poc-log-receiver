@@ -9,7 +9,7 @@ app.get('/', (req, res) => res.send("HELLO WORLD!"));
 
 app.post('/logs', (req, res) => {
     console.log((req.body))
-    res.sendStatus(200);
+    return res.sendStatus(200);
 })
 
 app.listen((process.env.PORT || port), () => {
