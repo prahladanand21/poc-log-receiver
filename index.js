@@ -3,11 +3,12 @@ const app = express()
 const port = 3000
 
 
+app.use(express.json())
 
 app.get('/', (req, res) => res.send("HELLO WORLD!"));
 
 app.post('/logs', (req, res) => {
-    console.log(JSON.stringify(req))
+    console.log((req.body))
     res.sendStatus(200);
 })
 
