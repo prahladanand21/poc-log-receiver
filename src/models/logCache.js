@@ -1,4 +1,4 @@
-const parse = require('syslog-parse')
+const parser = require('heroku-log-parser')
 class LogCache {
     constructor () {
         this.cache = []
@@ -18,13 +18,19 @@ class LogCache {
      */
     addLog (log) {
         console.log(`Adding log ${log}`);
-        const logEntry = parse(log);
+        const logEntries = parser.parse(log);
         console.log(`Parsed log: ${JSON.stringify(logEntry)}`)
-        this.addLogEntry(logEntry)
+        logEntries.forEach(entry => {
+            this.addLogEntry(entry);
+        })
     }
 
     print() {
         console.log(JSON.stringify(this.cache, null, 4));
+    }
+
+    clear() {
+        this.cache = []
     }
 
 }
