@@ -1,9 +1,11 @@
-const express = require('express')
-var bodyParser = require('body-parser')
+const express = require('express');
+const parse = require('syslog-parse');
+const bodyParser = require('body-parser');
+const logCache = require('./src/models/logCache')
 const app = express()
 const port = 3000
 
-var logs = []
+const logs = []
 var cache = []
 
 app.use(bodyParser.text({"type": "application/logplex-1"}))
@@ -21,7 +23,10 @@ setInterval(getLogsPerMinute, 60000);
 app.post('/logs', (req, res) => {
     console.log(req.body);
     const currLogs = req.body.split('\n');
-    cache.push(...currLogs);
+    currLogs.forEach(log => {
+      logCache.addLog(log);  
+    });
+    logCache.print();
     res.setHeader("Content-Length", 0)
     return res.sendStatus(200);
 })
