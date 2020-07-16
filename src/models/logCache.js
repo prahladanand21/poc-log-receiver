@@ -17,7 +17,9 @@ class LogCache {
      * @param {String} log The syslog message sent from logplex 
      */
     addLog (log) {
+        console.log(`Adding log ${log}`);
         const logEntry = parse(log);
+        console.log(`Parsed log: ${JSON.stringify(logEntry)}`)
         this.addLogEntry(logEntry)
     }
 
