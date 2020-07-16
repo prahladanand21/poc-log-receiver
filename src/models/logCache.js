@@ -19,7 +19,7 @@ class LogCache {
     addLog (log) {
         console.log(`Adding log ${log}`);
         const logEntries = parser.parse(log);
-        console.log(`Parsed log: ${JSON.stringify(logEntry)}`)
+        console.log(`Parsed log: ${JSON.stringify(logEntries)}`)
         logEntries.forEach(entry => {
             this.addLogEntry(entry);
         })
