@@ -1,7 +1,8 @@
 const parser = require('heroku-log-parser')
 class LogCache {
     constructor () {
-        this.cache = []
+        this.cache = [];
+        this.store = [];
     }
 
     /**
@@ -17,22 +18,26 @@ class LogCache {
      * @param {String} log The syslog message sent from logplex 
      */
     addLog (log) {
-        console.log(`Adding log ${log}`);
         const logEntries = parser.parse(log);
-        console.log(`Parsed log: ${JSON.stringify(logEntries)}`)
         logEntries.forEach(entry => {
             this.addLogEntry(entry);
         })
     }
 
+    /**
+     * Print contents of short-term cache
+     */
     print() {
         console.log(JSON.stringify(this.cache, null, 4));
     }
 
+    /**
+     * Clear short term cache and move contents to long term store 
+     */
     clear() {
-        this.cache = []
+        this.store.push(...this.cache);
+        this.cache = [];
     }
-
 }
 
 
