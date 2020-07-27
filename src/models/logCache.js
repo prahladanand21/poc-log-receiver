@@ -12,6 +12,8 @@ class LogCache {
      */
     addLogEntry (logEntry) {
         this.cache.push(logEntry);
+        console.log(`Added logEntry: ${JSON.stringify(logEntry)}`);
+        console.log(JSON.stringify(this.cache) + "-----cache")
     }
 
     /**
@@ -33,15 +35,19 @@ class LogCache {
      * 
      * @param {String} curr_time 
      */
-    getLogs(curr_time) {
+    getLogs() {
+        const currentTime = (new Date()).getTime()
+        const startTime = currentTime - 60000;
+
+        
         console.log(JSON.stringify(this.cache));
+        console.log(`curr_time: ${currentTime}`);
+        console.log(`start_time: ${startTime}`);
+
         const result = [];
-        const start_time = curr_time - 60000;
-        console.log(`curr_time: ${curr_time}`);
-        console.log(`start_time: ${start_time}`);
         this.cache.forEach(log => {
             console.log(log['timestamp']);
-            if (log['timestamp'] <= curr_time && log['timestamp'] >= start_time) {
+            if (log['timestamp'] <= currentTime && log['timestamp'] >= startTime) {
                 result.push(log);
             }
         });
