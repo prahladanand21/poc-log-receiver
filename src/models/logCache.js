@@ -34,7 +34,7 @@ class LogCache {
      * @param {String} curr_time 
      */
     getLogs(curr_time) {
-        result = [];
+        const result = [];
         const start_time = curr_time - 60000;
         this.cache.forEach(log => {
             if (log['timestamp'] <= curr_time && log['timestamp'] >= start_time) {
