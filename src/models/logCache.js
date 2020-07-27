@@ -37,10 +37,10 @@ class LogCache {
         console.log(JSON.stringify(this.cache));
         const result = [];
         const start_time = curr_time - 60000;
+        console.log(`curr_time: ${curr_time}`);
+        console.log(`start_time: ${start_time}`);
         this.cache.forEach(log => {
-            console.log(moment(curr_time).toString());
-            console.log(moment(start_time).toString());
-            console.log(moment(log['timestamp']).toString());
+            console.log(log['timestamp']);
             if (log['timestamp'] <= curr_time && log['timestamp'] >= start_time) {
                 result.push(log);
             }
