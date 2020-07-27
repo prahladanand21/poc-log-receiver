@@ -40,7 +40,7 @@ class LogCache {
         this.cache.forEach(log => {
             console.log(moment(curr_time).toString());
             console.log(moment(start_time).toString());
-            console.log(log['timestamp']);
+            console.log(moment(log['timestamp']).toString());
             if (log['timestamp'] <= curr_time && log['timestamp'] >= start_time) {
                 result.push(log);
             }
