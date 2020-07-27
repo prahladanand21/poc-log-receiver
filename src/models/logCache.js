@@ -37,8 +37,8 @@ class LogCache {
         const result = [];
         const start_time = curr_time - 60000;
         this.cache.forEach(log => {
-            console.log(curr_time);
-            console.log(start_time);
+            console.log(moment(curr_time).toString());
+            console.log(moment(start_time).toString());
             console.log(log['timestamp']);
             if (log['timestamp'] <= curr_time && log['timestamp'] >= start_time) {
                 result.push(log);
