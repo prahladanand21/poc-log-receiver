@@ -34,6 +34,7 @@ class LogCache {
      * @param {String} curr_time 
      */
     getLogs(curr_time) {
+        console.log(JSON.stringify(this.cache));
         const result = [];
         const start_time = curr_time - 60000;
         this.cache.forEach(log => {
