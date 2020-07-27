@@ -36,7 +36,7 @@ class LogCache {
      * @param {String} curr_time 
      */
     getLogs() {
-        const currentTime = (new Date()).getTime()
+        const currentTime = moment.utc()
         const startTime = currentTime - 60000;
 
         

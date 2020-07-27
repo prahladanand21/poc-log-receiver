@@ -14,8 +14,6 @@ function getLogsPerMinute() {
     logCache.clear();
 }
 
-setInterval(getLogsPerMinute, 60000);
-
 app.post('/logs', (req, res) => {
     console.log(req.body);
     logCache.addLog(req.body);
@@ -26,4 +24,5 @@ app.post('/logs', (req, res) => {
 
 app.listen((process.env.PORT || port), () => {
     console.log("listening....")
+    setInterval(getLogsPerMinute, 60000);
 })
