@@ -18,18 +18,21 @@ function getLogsPerMinute() {
     console.log('Number of logs in last minute: ' + logs.length);
     console.log(`Average Request Rate: ${logs.length / 60} logs/sec`);
 
-    request
-        .post(config.ajnaURL)
-        .key(config.ajnaKey)
-        .cert(config.ajnaCert)
-        .set('Content-Type', 'application/json')
-        .send(metrics)
-        .then((res) => {
-            console.log('Metrics sent successfully');
-        })
-        .catch((err) => {
-            console.error(err);
-        });
+    const post = request.post(config.ajnaURL);
+    if (config.ajnaKey && config.ajnaCert) {
+        console.log(`Verifying AjnaKey and AjnaCert`)
+        post.key(config.ajnaKey)
+        post.cert(config.ajnaCert)
+    }
+    post.set('Content-Type', 'application/json')
+    .send(metrics)
+    .then((res) => {
+        console.log('Metrics sent successfully');
+        console.log(JSON.stringify(res.body));
+    })
+    .catch((err) => {
+        console.error(err);
+    });
         
     logCache.clear();
 }
