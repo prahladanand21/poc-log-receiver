@@ -2,6 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const logCache = require('./src/models/logCache')
 const app = express()
+const moment = require('moment')
 const port = 3000
 
 app.use(bodyParser.text({"type": "application/logplex-1"}))
