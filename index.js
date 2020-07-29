@@ -19,11 +19,11 @@ function getLogsPerMinute() {
     console.log(`Average Request Rate: ${logs.length / 60} logs/sec`);
 
     const post = request.post(config.ajnaURL);
-    if (config.ajnaKey && config.ajnaCert) {
-        console.log(`Verifying AjnaKey and AjnaCert`)
-        post.key(config.ajnaKey)
-        post.cert(config.ajnaCert)
-    }
+    // if (config.ajnaKey && config.ajnaCert) {
+    //     console.log(`Verifying AjnaKey and AjnaCert`)
+    //     post.key(config.ajnaKey)
+    //     post.cert(config.ajnaCert)
+    // }
     post.set('Content-Type', 'application/json')
     .send(metrics)
     .then((res) => {
