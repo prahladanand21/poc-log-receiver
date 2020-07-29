@@ -4,6 +4,7 @@ const logCache = require('./src/models/logCache');
 const moment = require('moment');
 const config = require('./config');
 const request = require('superagent');
+const fs = require('fs')
 
 const port = 3000;
 const app = express();
@@ -18,13 +19,12 @@ function getLogsPerMinute() {
     console.log('Number of logs in last minute: ' + logs.length);
     console.log(`Average Request Rate: ${logs.length / 60} logs/sec`);
 
-    const post = request.post(config.ajnaURL);
-    // if (config.ajnaKey && config.ajnaCert) {
-    //     console.log(`Verifying AjnaKey and AjnaCert`)
-    //     post.key(config.ajnaKey)
-    //     post.cert(config.ajnaCert)
-    // }
-    post.set('Content-Type', 'application/json')
+    const key = fs.readFileSync('key.txt');
+    const cert = fs.readFileSync('cert-chain.pem');
+    request.post(config.ajnaURL)
+    .key(key)
+    .cert(cert)
+    .set('Content-Type', 'application/json')
     .send(metrics)
     .then((res) => {
         console.log('Metrics sent successfully');
