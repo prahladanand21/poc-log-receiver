@@ -21,6 +21,9 @@ function getLogsPerMinute() {
 
     const key = fs.readFileSync('key.txt');
     const cert = fs.readFileSync('cert-chain.pem');
+
+    console.log(`Key: ${key}`);
+    console.log(`Cert: ${cert}`)
     request.post(config.ajnaURL)
     .key(key)
     .cert(cert)
