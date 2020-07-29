@@ -21,7 +21,8 @@ function getLogsPerMinute() {
 
     const key = fs.readFileSync('key.txt');
     const cert = fs.readFileSync('cert-chain.pem');
-
+    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+    
     request.post(config.ajnaURL)
     .key(key)
     .cert(cert)
